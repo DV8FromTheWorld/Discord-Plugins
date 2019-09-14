@@ -1,0 +1,31 @@
+/*
+ Usernames in chat really don't need to be BOLD
+ */
+[class*="username"] {
+  font-weight: 500;
+}
+
+/*
+ Since we are dropping the BOLDness of usernames, reduce the weight of the font for chat messages.
+ */
+[class*="markup"] {
+  font-weight: 400 !important;
+}
+
+/*
+ Ensures that the title bar uses the overridden colors as the background-color style is
+ originally present on the parent, which is still using the light theme
+ */
+[class*="titleBar"] {
+  /*noinspection CssUnresolvedCustomProperty*/
+  background-color: var(--background-tertiary);
+}
+
+/*
+ Replace the margin used to push the icons down with padding instead so that the background color properly covers
+ the entire title bar instead of relying on the background color of the element under the title bar
+ */
+[class*="titleBar"][class*="withFrame"] {
+  margin-top: 0;
+  padding-top: 4px;
+}

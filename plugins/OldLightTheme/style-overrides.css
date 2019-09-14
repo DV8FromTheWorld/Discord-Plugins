@@ -8,7 +8,7 @@
 /*
  Since we are dropping the BOLDness of usernames, reduce the weight of the font for chat messages.
  */
-[class*="markup"] {
+[class*="markup"], [class*="textArea"] {
   font-weight: 400 !important;
 }
 

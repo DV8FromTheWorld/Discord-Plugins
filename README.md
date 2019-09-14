@@ -16,6 +16,15 @@ If you find that Discord will not start or is behaving oddly, you can uninstall 
 
 # Plugins
 ## Old Light Theme
-I am one of the crazys who liked the light theme, but I do not enjoy some of the changes made with the accessibilty update Discord rolled out. As such, this plugin has a _few_ tweaks to return the most notable changes.
+I am one of the crazys who liked the light theme, but I do not enjoy some of the changes made with the accessibilty update Discord rolled out. As such, this plugin has a _few_ tweaks, most notably:
+ - The return of certain Dark Theme elements
+   - The Server Selector SideBar
+   - The Channel Selector SideBar
+   - The top, window-chrome title bar
+ - Some of the text in the chat window has had its boldness reduced
+   - Usernames
+   - Messages
 
-
+Accessible Light Theme | Old Light Theme Plugin
+:--:|:------:
+![image](https://user-images.githubusercontent.com/1479909/64905448-90935280-d6a6-11e9-9c4b-217a8e8e19c3.png) | ![image](https://user-images.githubusercontent.com/1479909/64905385-9c324980-d6a5-11e9-8095-62720feb2bcc.png)

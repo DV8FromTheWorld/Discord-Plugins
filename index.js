@@ -35,16 +35,16 @@ function importPlugin(pluginName) {
   return plugin.default || plugin
 }
 
-const plugins = [
-  importPlugin('OldLightTheme'),
-  importPlugin('LINE')
-]
-.filter(plugin => plugin) //Ensure that the imported plugin returned _something_
-.map(Plugin => new Plugin())
-
-plugins.forEach(plugin => plugin.beforeLoad())
-
 onDOMExists(() => {
+  //Import the plugins after the DOM has been created, that way if anything imported
+  // needs the DOM on-require due to static-imports, it is available.
+  const plugins = [
+    importPlugin('OldLightTheme'),
+    importPlugin('LINE')
+  ]
+  .filter(plugin => plugin) //Ensure that the imported plugin returned _something_
+  .map(Plugin => new Plugin())
+
   plugins.forEach(plugin => plugin.load())
 
   const domChangeListener = new MutationObserver((mutations) => {

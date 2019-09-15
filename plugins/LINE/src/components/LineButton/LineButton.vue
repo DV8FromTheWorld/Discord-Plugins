@@ -1,69 +1,45 @@
 <template>
-  <div class="line-icon-div">
+  <div
+    class="line-icon"
+    :class="{ 'u-is-active': isStickerSelectorOpen }"
+    @keydown.enter.prevent="toggleStickerSelector"
+    @keydown.space.prevent="toggleStickerSelector"
+    @click.prevent="toggleStickerSelector">
     <img
-      class="line-icon"
+      class="line-icon__image"
       aria-label="Opens and closes the LINE Sticker Selector"
-      src="https://i.imgur.com/oOpi6Q9.png"
-      @keydown.enter.prevent="toggleStickerSelector"
-      @keydown.space.prevent="toggleStickerSelector"
-      @click.prevent="toggleStickerSelector"
+      src="./line-icon.png"
     />
   </div>
 </template>
 
 <script>
+  import SelectorStateCommunication from '../../mixins/SelectorStateCommunication'
+
   export default {
-    methods: {
-      toggleStickerSelector() {
-        console.log("triggering selector")
-      }
-    }
+    mixins: [ SelectorStateCommunication ]
   }
 </script>
 
-<!--
 <style lang="stylus">
-  .line-icon-div {
-    position: relative;
-    margin: -12px 32px -12px 0px;
-    height: 41px;
-    width: 45px;
-    cursor: pointer;
-    display:  -webkit-box;
-    display:  -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    filter: grayscale(95%);
-    -webkit-filter: grayscale(95%);
-    -webkit-box-align: center;
-    -moz-box-align: center;
-    -ms-box-align: center;
-    -o-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -moz-box-pack: center;
-    -ms-box-pack: center;
-    -o-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-transition: filter .3s ease-in, -webkit-filter .3s ease-in;
-    -moz-transition: filter .3s ease-in, -webkit-filter .3s ease-in;
-    -o-transition: filter .3s ease-in, -webkit-filter .3s ease-in;
-    -ms-transition: filter .3s ease-in, -webkit-filter .3s ease-in;
-    transition: filter .3s ease-in, -webkit-filter .3s ease-in;
-  }
+  .line-icon
+    width 40px
+    display flex
+    align-items center
+    justify-content center
+    cursor pointer
+    filter grayscale(95%)
+    transition filter .1s ease-in
 
-  .line-icon-div:hover {
-    filter: grayscale(0%);
-    -webkit-filter: grayscale(0%);
-    -webkit-transition: filter .3s ease-in, -webkit-filter .3s ease-in;
-    -moz-transition: filter .3s ease-in, -webkit-filter .3s ease-in;
-    -o-transition: filter .3s ease-in, -webkit-filter .3s ease-in;
-    -ms-transition: filter .3s ease-in, -webkit-filter .3s ease-in;
-    transition: filter .3s ease-in, -webkit-filter .3s ease-in;
-  }
+    &__image
+      height 25px
+      transition height .1s ease-in
+
+    &:hover, &.u-is-active
+      filter grayscale(0%)
+      transition filter .1s ease-in
+
+      & ^[0]__image
+        height 28px
+
 </style>
--->

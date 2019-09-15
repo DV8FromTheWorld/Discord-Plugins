@@ -15,17 +15,10 @@ module.exports = class AbstractPlugin {
     return 'No Description Provided'
   }
 
-
-  beforeLoad() {
-  }
-
   load() {
   }
 
   onDOMUpdate(mutations) {
-  }
-
-  beforeUnload() {
   }
 
   unload() {

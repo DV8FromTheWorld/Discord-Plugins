@@ -1,0 +1,268 @@
+/**********************************
+*             Settings            *
+**********************************/
+
+.dlPackIcon {
+  height: 16px;
+  width: 16px;
+  transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+}
+
+.settingsDesc {
+  float: left;
+  width: 90%;
+}
+
+.settingsPackDiv {
+  float: right;
+  width: 10%;
+}
+
+/**************************************
+*             LINE Icon               *
+**************************************/
+
+.line-icon-div {
+  position: relative;
+  margin: -12px 32px -12px 0px;
+  height: 41px;
+  width: 45px;
+  cursor: pointer;
+  display:  -webkit-box;
+  display:  -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  filter: grayscale(95%);
+  -webkit-filter: grayscale(95%);
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-transition: filter .3s ease-in, -webkit-filter .3s ease-in;
+  -moz-transition: filter .3s ease-in, -webkit-filter .3s ease-in;
+  -o-transition: filter .3s ease-in, -webkit-filter .3s ease-in;
+  -ms-transition: filter .3s ease-in, -webkit-filter .3s ease-in;
+  transition: filter .3s ease-in, -webkit-filter .3s ease-in;
+}
+
+.line-icon-div:hover {
+  filter: grayscale(0%);
+  -webkit-filter: grayscale(0%);
+  -webkit-transition: filter .3s ease-in, -webkit-filter .3s ease-in;
+  -moz-transition: filter .3s ease-in, -webkit-filter .3s ease-in;
+  -o-transition: filter .3s ease-in, -webkit-filter .3s ease-in;
+  -ms-transition: filter .3s ease-in, -webkit-filter .3s ease-in;
+  transition: filter .3s ease-in, -webkit-filter .3s ease-in;
+}
+
+
+/*************************************
+*            Sticker Div             *
+*************************************/
+
+.sticker-div {
+  /* background: rgba(0, 0, 0, 0.3); */
+  display: block;
+  height: 0px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  /* transition-property: height, border;
+  transition-duration: .5s, .5s;
+  transition-timing-function: ease-out, step-end; */
+}
+
+.sticker-div-active {
+  /* background: rgba(0, 0, 0, 0.3); */
+  border-top: 3px solid rgba(0,0,0,0.1);
+  min-height: 250px;                         /* 250px */
+  /* transition-property: height, border;
+  transition-duration: .5s, 0s;
+  transition-timing-function: ease-out, step-end; */
+}
+
+.sticker-div-divider {
+  height: 3px;
+  background-color: #f6f7f9;
+  border-top: 1px solid #f0f1f4;
+  border-bottom: 1px solid #f0f1f4;
+}
+
+/*********************************
+*         Sticker Tab Area       *
+*********************************/
+
+.sticker-tab-area {
+  position: relative;
+  border-bottom: 1px solid #f0f1f4;;
+}
+
+.sticker-tab-area-toggle {
+  position: absolute;
+  bottom: 0;
+  right: 2px;
+  width: 32px;
+  height: 50px;
+  background-color: transparent;
+  padding: 0;
+}
+
+.sticker-tab-area-toggle:after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 12px;
+  margin: auto;
+  background-image: url("https://i.imgur.com/qtlt8Nq.png");
+}
+
+.sticker-tab-area-toggle:hover:after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 12px;
+  margin: auto;
+  background-image: url("https://i.imgur.com/hTEvPTM.png");
+}
+
+.sticker-tab-area-toggle .toggled:after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 12px;
+  margin: auto;
+  background-image: url("https://i.imgur.com/k7qjxSK.png");
+}
+
+.sticker-tab-area-toggle .toggled:hover:after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 12px;
+  margin: auto;
+  background-image: url("https://i.imgur.com/FS1pjYD.png");
+}
+
+.sticker-tab-area-scroller {
+  height: 50px;
+  background-color: white;
+  margin: 0 28px 0 4px
+  /* transition: height 0.2s; */
+}
+
+.sticker-tab-area-scroller::-webkit-scrollbar {
+  width: 10px;
+}
+
+.sticker-tab-area-scroller-open {
+  hieght: 150px
+}
+
+.sticker-tab-area-list {
+  list-style: none;
+}
+
+.sticker-tab-area-list>  li {
+  position: relative;
+  float: left;
+}
+
+.sticker-tab-area-list > li > button {
+  width: 48px;
+  height: 38px;
+  margin: 6px 1px;
+  padding: 0px;
+  background-color: white;
+  filter: grayscale(95%);
+  -webkit-filter: grayscale(95%);
+}
+
+/** Causes a box to form around the LineSticker tab when it is hovered over **/
+.sticker-tab-area-list > li:hover > button:after {
+  content: "";
+  position: absolute;
+  margin: 6px 1px;
+  top: 0;
+  left: 0;
+  width: 44px;
+  height: 38px;
+  border: 1px solid #e0e1e6;
+  border-radius: 2px;
+}
+
+.sticker-tab-area-list > li.TabSelected > button {
+  background-color: #eff1f6;
+  border-radius: 2px;
+  filter: grayscale(0%);
+  -webkit-filter: grayscale(0%);
+}
+
+.sticker-tab-area-list > li > button > img {
+  vertical-align: top;
+  border: 0;
+  width: 44px;
+  height: inherit;
+}
+
+/**********************************
+*      Sticker Display Area       *
+**********************************/
+
+.sticker-display-area {
+  position: relative;
+}
+
+.sticker-display-scroller {
+  height: 197px;
+  background-color: white;
+}
+
+.sticker-display-area-list > li {
+  position: relative;
+  float: left;
+  cursor: pointer;
+  padding: 0 1px;
+  width: 108px;
+  height: 100px;
+}
+
+.sticker-display-area-list > li > img {
+  width: 100%;
+  height: 100%;
+}
+
+/**
+ * Makes all display stickers have a white film over them to indicate that
+ * they are not the LineSticker which the mouse is currently hovering over.
+ * This triggers when the mouse is hovering in the LineSticker display area.
+ */
+.sticker-display-area-list:hover > li:after {
+  content: ""; /*need content for ::after to be added!*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(248, 249, 251, .55);
+}
+
+/**
+ * Prevents the white film (from the above rule) from covering the
+ * display LineSticker that is currently being hovered over.
+ */
+.sticker-display-area-list:hover > li:hover:after {
+  /* we dont put a content here as it is included from above rule */
+  background: 0 0;
+}

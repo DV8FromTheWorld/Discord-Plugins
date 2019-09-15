@@ -37,6 +37,7 @@ function importPlugin(pluginName) {
 
 const plugins = [
   importPlugin('OldLightTheme'),
+  importPlugin('LINE')
 ]
 .filter(plugin => plugin) //Ensure that the imported plugin returned _something_
 .map(Plugin => new Plugin())

@@ -1,0 +1,25 @@
+{
+  "name": "discord-line-plugin",
+  "version": "1.0.0",
+  "description": "Provides a LINE like experience in Discord for sending Stickers",
+  "main": "src/index.js",
+  "scripts": {
+    "build-watch": "webpack --colors --watch",
+    "build": "webpack --minify --bail"
+  },
+  "author": "Austin Keener <keeneraustin@yahoo.com>",
+  "license": "MIT",
+  "dependencies": {
+    "css-loader": "^3.2.0",
+    "progress-bar-webpack-plugin": "^1.12.1",
+    "style-loader": "^1.0.0",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
+    "vue": "^2.6.10",
+    "vue-loader": "^15.7.1",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.8",
+    "yargs": "^14.0.0"
+  }
+}

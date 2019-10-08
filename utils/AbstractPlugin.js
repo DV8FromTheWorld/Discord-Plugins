@@ -1,4 +1,12 @@
 module.exports = class AbstractPlugin {
+  constructor(nodeGlobals, storageController) {
+
+  }
+
+  static getIdentifier() {
+    throw new Error("No identifier provided.")
+  }
+
   getName() {
     return 'Unknown'
   }

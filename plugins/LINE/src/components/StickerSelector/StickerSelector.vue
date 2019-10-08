@@ -12,12 +12,19 @@
       </StickerPackTab>
     </div>
     <section class="sticker-selector__sticker-display">
-      <div
-        v-for="sticker in selectedStickerPack.stickers"
-        :key="sticker.id"
-        class="sticker">
+      <template v-if="selectedStickerPack">
+        <div
+          v-for="sticker in selectedStickerPack.stickers"
+          :key="sticker.id"
+          class="sticker">
           <img class="sticker__image" :src="sticker.stickerUrl">
-      </div>
+        </div>
+      </template>
+      <template v-else>
+        <div class="sticker-selector__sticker-display__placeholder">
+          No pack selected.
+        </div>
+      </template>
     </section>
   </div>
 </template>
@@ -26,32 +33,35 @@
   import SelectorStateCommunication from '../../mixins/SelectorStateCommunication'
   import StickerPackTab from './StickerPackTab.vue'
 
-  const makeSticker = () => ({ id: Math.random(), stickerUrl: "https://i.imgur.com/t3z8PLy.png" })
+  const LAST_USED_STICKER_PACK = 'net.dv8tion.discord.LINE.last-used-sticker-pack'
 
   export default {
     mixins: [ SelectorStateCommunication ],
     components: {
       StickerPackTab
     },
+    created() {
+      this.loadSettings()
+      this.loadPacks()
+    },
     data() {
       return {
-        userDefinedStickerPacks: [{
-          id: 'fma',
-          thumbnailImg: 'https://i.imgur.com/t3z8PLy.png',
-          stickers: Array.from({length: 22}, makeSticker)
-        }],
-        selectedStickerPackId: 'recently-used'
+        showRecentlyUsedStickersTab: true,
+        showFavoriteStickersTab: true,
+
+        recentlyUsedStickers: [],
+        userDefinedStickerPacks: [],
+        selectedStickerPackId: this.$localStorage.getItem(LAST_USED_STICKER_PACK)
       }
     },
     computed: {
       allStickerPacks() {
-        const recentlyUsedStickers = {
-          id: 'recently-used',
-          thumbnailImg: 'https://i.imgur.com/CvhIWAL.png',
-          stickers:  Array.from({length: 5}, makeSticker)
-        }
-
-        return [recentlyUsedStickers, ...this.userDefinedStickerPacks]
+        return [
+          // this.showRecentlyUsedStickersTab ? this.getRecentUsedStickersPack() : null,
+          // this.showFavoriteStickersTab ? {} : null,
+          ...this.userDefinedStickerPacks
+        ]
+        .filter(pack => pack)
       },
       selectedStickerPack() {
         return this.allStickerPacks.find(pack => pack.id === this.selectedStickerPackId)
@@ -60,7 +70,33 @@
     methods: {
       selectStickerPack(packId) {
         this.selectedStickerPackId = packId
+        this.$localStorage.setItem(LAST_USED_STICKER_PACK, packId)
       },
+      async loadSettings() {
+        const settings = await this.$services.settingsManager.getSettings()
+
+        this.showRecentlyUsedStickersTab = settings.enableRecentlyUsedStickersTab
+        this.showFavoriteStickersTab = settings.enableFavoriteStickersTab
+      },
+      async loadPacks() {
+        const allPacks = await this.$services.stickerManager.getAllPacks()
+
+        this.userDefinedStickerPacks = allPacks.map(packInfo => {
+          return {
+            id: packInfo.name,
+            thumbnailImg: packInfo.tabImage,
+            stickers: packInfo.stickers.map(stickerDataUrl => {
+              return {
+                id: Math.random(),
+                stickerUrl: stickerDataUrl
+              }
+            })
+          }
+        })
+      },
+      getRecentUsedStickersPack() {
+
+      }
     }
   }
 </script>
@@ -89,6 +125,12 @@
     margin 0 20px
     height 100%
     background-color var(--background-secondary)
+
+    &__placeholder
+      display flex
+      flex 1
+      align-self center
+      justify-content center
 
     //When we hover over the sticker selection area, add a visual indicator to all stickers, except
     // the one being hovered, that

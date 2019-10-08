@@ -11,6 +11,10 @@ const elementSelectors = [
 ]
 
 module.exports = class OldLightThemePlugin extends AbstractPlugin {
+  static getIdentifier() {
+    return 'old-light-theme'
+  }
+
   getName() {
     return 'Old Light Theme'
   }

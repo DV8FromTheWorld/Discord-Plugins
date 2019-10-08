@@ -4,7 +4,17 @@ if (typeof window === 'undefined' || !window.location.href.includes('discordapp'
 }
 
 require('./utils/RequireExtensions')
+
+const path            = require('path')
 const { onDOMExists } = require('./utils/GeneralUtils')
+const StorageController = require('./utils/StorageController')
+
+//Capture node globals before Discord removes them from the global object.
+const nodeGlobals = {
+  ...global,
+  require,
+  path
+}
 
 function tryRequire(module) {
   try {
@@ -43,7 +53,13 @@ onDOMExists(() => {
     importPlugin('LINE')
   ]
   .filter(plugin => plugin) //Ensure that the imported plugin returned _something_
-  .map(Plugin => new Plugin())
+  .map(Plugin => {
+    const pluginStorageRoot = path.resolve(__dirname, 'plugin-data', Plugin.getIdentifier())
+    const pluginStorageController = new StorageController(pluginStorageRoot)
+    pluginStorageController.createPath('.')
+
+    return new Plugin(nodeGlobals, pluginStorageController)
+  })
 
   plugins.forEach(plugin => plugin.load())
 

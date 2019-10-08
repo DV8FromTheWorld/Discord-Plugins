@@ -1,13 +1,46 @@
 import AbstractPlugin from '../../../utils/AbstractPlugin'
 import Vue from 'vue'
+import ProviderPlugin from "./mixins/ProviderPlugin";
 
 import LineButton from './components/LineButton/LineButton.vue'
 import StickerSelector from './components/StickerSelector/StickerSelector.vue'
+import NativeRequester from "./services/NativeRequester";
+
+import SettingsManager from "./services/SettingsManager";
+import StickerManager  from "./services/StickerManager";
 
 const buttonId = 'line-icon-button'
 const stickerSelectorId = 'line-sticker-selector'
 
+const SETTINGS_FILE = "settings.json"
+const STICKER_PACK_DIR = "sticker-packs"
+
 export default class LinePlugin extends AbstractPlugin {
+  constructor(nodeGlobals, storageController) {
+    super(nodeGlobals, storageController)
+
+    this.services = {}
+
+    this.services.storageController = storageController
+    this.services.requester = new NativeRequester(nodeGlobals)
+    this.services.settingsManager = new SettingsManager(this.services)
+    this.services.stickerManager = new StickerManager(this.services)
+
+    Vue.use(ProviderPlugin, {
+      $storageController: this.services.storageController,
+      $requester: this.services.requester,
+      $services: this.services,
+      $localStorage: nodeGlobals.localStorage
+    })
+
+    // storageController.createPath(STICKER_PACK_DIR)
+    this.services.settingsManager.getSettings()
+  }
+
+  static getIdentifier() {
+    return 'LINE'
+  }
+
   getName() {
     return 'LINE'
   }

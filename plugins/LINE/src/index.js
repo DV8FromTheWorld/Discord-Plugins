@@ -8,6 +8,7 @@ import NativeRequester from "./services/NativeRequester";
 
 import SettingsManager from "./services/SettingsManager";
 import StickerManager  from "./services/StickerManager";
+import ImportManager from "./services/ImportManager";
 
 const buttonId = 'line-icon-button'
 const stickerSelectorId = 'line-sticker-selector'
@@ -25,6 +26,7 @@ export default class LinePlugin extends AbstractPlugin {
     this.services.requester = new NativeRequester(nodeGlobals)
     this.services.settingsManager = new SettingsManager(this.services)
     this.services.stickerManager = new StickerManager(this.services)
+    this.services.importManager = new ImportManager(this.services)
 
     Vue.use(ProviderPlugin, {
       $storageController: this.services.storageController,
